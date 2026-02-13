@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday 🎂</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .box {
+      background: white;
+      padding: 40px;
+      border-radius: 28px;
+      text-align: center;
+      width: 360px;
+      position: relative;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+
+    #countdown, #blowCountdown {
+      font-size: 32px;
+      color: #ff4d6d;
+      margin: 20px 0;
+    }
+
+    /* ---------- CAKE ---------- */
+    .cake {
+      display: none;
+      margin: 35px auto;
+      width: 220px;
+      transform: perspective(700px) rotateX(25deg);
+    }
+
+    .cake-top {
+      width: 220px;
+      height: 70px;
+      background: radial-gradient(circle at top, #ffd6e0, #ff8fab);
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+      box-shadow: inset 0 -6px 0 rgba(0,0,0,0.12);
+    }
+
+    .cake-body {
+      width: 220px;
+      height: 110px;
+      background: linear-gradient(to bottom, #ffb3c6, #ff8fab);
+      border-radius: 0 0 50% 50%;
+      margin-top: -35px;
+      box-shadow: inset 0 -12px 0 rgba(0,0,0,0.12);
+    }
+
+    /* ---------- CANDLES ---------- */
+    .candle {
+      width: 10px;
+      height: 32px;
+      background: white;
+      position: absolute;
+      top: 15px;
+      border-radius: 5px;
+    }
+
+    .flame {
+      width: 8px;
+      height: 14px;
+      background: radial-gradient(circle, #ffd166, #f77f00);
+      border-radius: 50%;
+      position: absolute;
+      top: -14px;
+      left: 1px;
+      animation: flicker 0.35s infinite;
+    }
+
+    @keyframes flicker {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(0.85); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* ---------- MESSAGE ---------- */
+    #message {
+      display: none;
+      font-size: 18px;
+      color: #444;
+      line-height: 1.6;
+      margin-top: 20px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- CONFETTI ---------- */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      top: -10px;
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h1>Happy Birthday [Her Name] 🎉</h1>
+  <p>Make a wish…</p>
+
+  <!-- Initial countdown -->
+  <div id="countdown">5</div>
+
+  <!-- Cake -->
+  <div class="cake" id="cake">
+    <div class="cake-top">
+      <div class="candle" style="left:80px"><div class="flame"></div></div>
+      <div class="candle" style="left:105px"><div class="flame"></div></div>
+      <div class="candle" style="left:130px"><div class="flame"></div></div>
+    </div>
+    <div class="cake-body"></div>
+  </div>
+
+  <!-- Blow text -->
+  <div id="blowCountdown" style="display:none;"></div>
+
+  <!-- Final message -->
+  <div id="message">
+    <p>
+      I hope this moment made you smile.<br>
+      You deserve warmth, love, and quiet happiness.
+    </p>
+    <p>
+      Never forget how special you truly are 💖
+    </p>
+  </div>
+</div>
+
+<script>
+  const countdown = document.getElementById("countdown");
+  const cake = document.getElementById("cake");
+  const blowText = document.getElementById("blowCountdown");
+  const message = document.getElementById("message");
+
+  // 5 sec start countdown
+  let time = 5;
+  const startTimer = setInterval(() => {
+    time--;
+    countdown.innerText = time;
+
+    if (time === 0) {
+      clearInterval(startTimer);
+      countdown.style.display = "none";
+      cake.style.display = "block";
+      startBlowCountdown();
+    }
+  }, 1000);
+
+  function startBlowCountdown() {
+    let t = 3;
+    blowText.style.display = "block";
+    blowText.innerText = "Blow candles in " + t;
+
+    const timer = setInterval(() => {
+      t--;
+      if (t > 0) {
+        blowText.innerText = "Blow candles in " + t;
+      } else {
+        clearInterval(timer);
+        blowText.style.display = "none";
+        blowCandles();
+      }
+    }, 1000);
+  }
+
+  function blowCandles() {
+    document.querySelectorAll(".flame").forEach(f => f.remove());
+
+    setTimeout(() => {
+      cake.style.display = "none";
+      message.style.display = "block";
+      celebrate();
+    }, 2000);
+  }
+
+  function celebrate() {
+    for (let i = 0; i < 120; i++) {
+      const c = document.createElement("div");
+      c.classList.add("confetti");
+      c.style.left = Math.random() * 100 + "vw";
+      c.style.background = `hsl(${Math.random() * 360},100%,60%)`;
+      c.style.animationDuration = Math.random() * 2 + 2 + "s";
+      document.body.appendChild(c);
+    }
+  }
+</script>
+
+</body>
+</html>
