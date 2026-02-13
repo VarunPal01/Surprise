@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unlock 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1d2671, #c33764);
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    .box {
+      background: rgba(255,255,255,0.15);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      max-width: 420px;
+    }
+
+    input {
+      padding: 12px;
+      border-radius: 20px;
+      border: none;
+      width: 80%;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 30px;
+      border-radius: 30px;
+      border: none;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h1>🔒 Unlock Me</h1>
+    <p>Clue: Our secret word</p>
+    <input type="text" id="key" placeholder="Type here">
+    <br>
+    <button onclick="unlock()">Unlock 💗</button>
+  </div>
+
+  <script>
+    const secret = "sunshine"; // CHANGE THIS
+
+    function unlock() {
+      const input = document.getElementById("key").value.toLowerCase();
+      if (input === secret) {
+        window.location.href = "intro.html";
+      } else {
+        alert("Not quite. Try again 💭");
+      }
+    }
+  </script>
+
+</body>
+</html>
