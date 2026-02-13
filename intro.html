@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Just One Thing 💭</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .box {
+      max-width: 420px;
+      text-align: center;
+      padding: 40px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 30px;
+      background: #ff4d6d;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <p>
+      Before anything else,
+      I just want you to know something.
+    </p>
+
+    <p>
+      You matter more than you think.
+      Your presence makes things lighter,
+      and your smile means more than words.
+    </p>
+
+    <p>
+      This is just a small way of saying…
+      today is special because it’s <b>you</b>.
+    </p>
+
+    <button onclick="next()">Continue 🎂</button>
+  </div>
+
+  <script>
+    function next() {
+      window.location.href = "final.html";
+    }
+  </script>
+
+</body>
+</html>
